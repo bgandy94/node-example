@@ -1,0 +1,31 @@
+{
+  "name": "node-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgandy94/node-example.git"
+  },
+  "author": "Brandon Gandy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bgandy94/node-example/issues"
+  },
+  "homepage": "https://github.com/bgandy94/node-example#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "hapi": "^16.6.2",
+    "hapi-auth-cookie": "^7.0.0",
+    "joi": "^13.0.2",
+    "sequelize": "^4.22.6",
+    "sqlite3": "^3.1.13"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^3.0.0"
+  }
+}
