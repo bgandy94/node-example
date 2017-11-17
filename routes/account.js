@@ -2,18 +2,13 @@
 
 const Joi = require('joi');
 
-const accountService = require('../services').accountService;
+const accountController = require('../controllers').accountController;
 
 module.exports = [
     {
         method: 'POST',
         path: 'account/register',
-        handler: (request, reply) =>
-            accountService.register(request.payload)
-                .then(res => {
-                    reply('Success!')
-                })
-                .catch(err => reply('error')),
+        handler: accountController.register,
         config: {
             auth: false,
             validate: {
@@ -29,25 +24,13 @@ module.exports = [
     {
         method: 'POST',
         path: 'account/login',
-        handler: (request, reply) =>
-            accountService.login(request.payload)
-                .then(user => {
-                    request.server.app.cache.set(user.id+'', {user:user}, 0, (err) => {
-                        if (err) {
-                            reply(err);
-                        }
-                        request.cookieAuth.set({sid: user.id+''});
-                    })
-                    reply('success!');
-                })
-                .catch(err => reply(err)),
+        handler: accountController.login,
         config: {
             auth: false,
             validate: {
                 payload: {
                     email: Joi.string().required(),
                     password: Joi.string().required(),
-
                 }
             }
         }
@@ -55,10 +38,6 @@ module.exports = [
     {
         method: 'POST',
         path: 'account/logout',
-        handler: (request, reply) => {
-            console.log(request.server.app.cache);
-            request.cookieAuth.clear();
-            reply('Successfully logged out!');
-        }
+        handler: accountController.logout
     }
 ]

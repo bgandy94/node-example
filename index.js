@@ -34,7 +34,7 @@ server.auth.strategy('session', 'cookie', true, {
             if (!cached) {
                 return callback(null, false);
             }
-            return callback(null, true, cached.account)
+            return callback(null, true, cached.user)
         })
     }
 });
